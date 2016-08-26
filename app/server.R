@@ -1,8 +1,6 @@
 
 script <- '$(document).ready(function() { 
   $("#myTable").tablesorter({headers: {3: {sorter: false}}});
-  $("table").tablesorterPager({container: $("#pager")});
-
 });'
 
 row_click_script <- "

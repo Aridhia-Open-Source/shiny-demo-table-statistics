@@ -10,7 +10,13 @@ source("../plot_creation.R")
 source("../table_creation.R")
 
 
-people <- read.csv("~/Documents/kaggle/redhat/people.csv", nrow = 10000)
+#people <- read.csv("~/Documents/kaggle/redhat/people.csv", nrow = 10000)
+people <- read.csv("~/Documents/gosh_data/pediatrics_demographics.csv")
+people$logical <- sample(c(T, F), 500, replace = T)
+people$Date <- seq(as.Date("2010-01-01"), as.Date("2011-01-01"), length.out = 500)
+people$na <- NA
+people$na[1] <- 1
+people$na[2] <- 2
 
 ui <- fluidPage(
   includeScript("~/Documents/__jquery.tablesorter/jquery.tablesorter.js"),

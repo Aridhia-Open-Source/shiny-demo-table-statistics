@@ -75,9 +75,12 @@ create_row.Polynominal <- function(x, name, plot_id) {
 }
 
 
-create_row.Date <- function(x, plot_id) {
-  
-}
+create_row.Date <- create_row.Polynominal
+
+create_row.DateTime <- create_row.Polynominal
+
+create_row.Boolean <- create_row.Polynominal
+
 
 create_table <- function(summ, names, plot_ids) {
   print("Creating Table...")

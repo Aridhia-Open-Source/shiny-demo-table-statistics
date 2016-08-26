@@ -33,6 +33,9 @@ my_summ.character <- function(x) {
   
   matches <- gregexpr("), ", xvalues_string)[[1]]
   show <- matches[matches < 40]
+  if(length(show) == 0) {
+    show <- matches[1]
+  }
   
   if(length(show) == length(matches)) {
     string <- xvalues_string
@@ -60,11 +63,30 @@ my_summ.factor <- function(x) {
 }
 
 my_summ.Date <- function(x) {
-  my_summ(as.character(x))
+  out <- my_summ(as.character(x))
+  class(out) <- "Date"
+  out$Type <- "Date"
+  out
 }
+
+my_summ.POSIXct <- function(x) {
+  out <- my_summ(as.character(x))
+  class(out) <- "DateTime"
+  out$Type <- "DateTime"
+  out
+}
+
+my_summ.POSIXlt <- my_summ$POSIXct
 
 my_summ.data.frame <- function(x) {
   lapply(x, my_summ)
+}
+
+my_summ.logical <- function(x) {
+  out <- my_summ(as.character(x))
+  class(out) <- "Boolean"
+  out$Type <- "Boolean"
+  out
 }
 
 my_summ.NULL <- function(x) {

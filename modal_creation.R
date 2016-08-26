@@ -41,6 +41,10 @@ create_modal.Real <- function(x, name) {
 
 create_modal.Integer <- create_modal.Real
 
+#create_modal.Date <- create_modal.Real
+
+create_modal.Boolean <- create_modal.Polynominal
+
 create_modal.default <- function(x, name) {
   
   fluidRow()

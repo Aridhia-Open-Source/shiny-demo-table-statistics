@@ -8,6 +8,7 @@ dot_to_underscore <- function(string) {
 }
 
 
+
 create_modal <- function(x, name) {
   
   UseMethod("create_modal", x)
@@ -49,6 +50,10 @@ create_modal.Real <- function(x, name) {
 }
 
 create_modal.Integer <- create_modal.Real
+
+#create_modal.Date <- create_modal.Real
+
+create_modal.Boolean <- create_modal.Polynominal
 
 create_modal.default <- function(x, name) {
   
@@ -99,6 +104,9 @@ my_summ.character <- function(x) {
   
   matches <- gregexpr("), ", xvalues_string)[[1]]
   show <- matches[matches < 40]
+  if(length(show) == 0) {
+    show <- matches[1]
+  }
   
   if(length(show) == length(matches)) {
     string <- xvalues_string
@@ -126,12 +134,31 @@ my_summ.factor <- function(x) {
 }
 
 my_summ.Date <- function(x) {
-  my_summ(as.character(x))
+  out <- my_summ(as.character(x))
+  class(out) <- "Date"
+  out$Type <- "Date"
+  out
 }
 
 my_summ.data.frame <- function(x) {
   lapply(x, my_summ)
 }
+
+my_summ.logical <- function(x) {
+  out <- my_summ(as.character(x))
+  class(out) <- "Boolean"
+  out$Type <- "Boolean"
+  out
+}
+
+my_summ.POSIXct <- function(x) {
+  out <- my_summ(as.character(x))
+  class(out) <- "DateTime"
+  out$Type <- "DateTime"
+  out
+}
+
+my_summ.POSIXlt <- my_summ$POSIXct
 
 my_summ.NULL <- function(x) {
   NULL
@@ -180,6 +207,24 @@ simple_plot.integer <- function(data, x) {
     add_axis("x", title = "", ticks = 6) %>%
     add_axis("y", title = "", ticks = 8)
 }
+
+simple_plot.logical <- function(data, x) {
+  simple_plot(data, as.character(x))
+}
+
+simple_plot.Date <- function(data, x) {
+  d <- data
+  x_ <- x
+  
+  d %>% ggvis(~x_) %>%
+    layer_histograms(width = diff(range(x, na.rm = T))/12, fill := "#2C88A2", strokeWidth := 0.5) %>%
+    add_axis("x", title = "", ticks = 6) %>%
+    add_axis("y", title = "", ticks = 8)
+}
+
+simple_plot.DateTime <- simple_plot.Date
+
+
 
 
 create_header <- function(x, ...) {
@@ -258,9 +303,12 @@ create_row.Polynominal <- function(x, name, plot_id) {
 }
 
 
-create_row.Date <- function(x, plot_id) {
-  
-}
+create_row.Date <- create_row.Polynominal
+
+create_row.DateTime <- create_row.Polynominal
+
+create_row.Boolean <- create_row.Polynominal
+
 
 create_table <- function(summ, names, plot_ids) {
   print("Creating Table...")
@@ -275,6 +323,10 @@ create_table <- function(summ, names, plot_ids) {
   print("Done")
   out
 }
+
+
+
+
 
 
 

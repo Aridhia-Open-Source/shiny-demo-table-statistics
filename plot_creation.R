@@ -42,3 +42,20 @@ simple_plot.integer <- function(data, x) {
     add_axis("y", title = "", ticks = 8)
 }
 
+simple_plot.logical <- function(data, x) {
+  simple_plot(data, as.character(x))
+}
+
+simple_plot.Date <- function(data, x) {
+  d <- data
+  x_ <- x
+  
+  d %>% ggvis(~x_) %>%
+    layer_histograms(width = diff(range(x, na.rm = T))/12, fill := "#2C88A2", strokeWidth := 0.5) %>%
+    add_axis("x", title = "", ticks = 6) %>%
+    add_axis("y", title = "", ticks = 8)
+}
+
+
+simple_plot.DateTime <- simple_plot.Date
+
