@@ -57,5 +57,5 @@ simple_plot.Date <- function(data, x) {
 }
 
 
-simple_plot.DateTime <- simple_plot.Date
-
+simple_plot.POSIXct <- simple_plot.Date
+simple_plot.POSIXlt <- simple_plot.Date

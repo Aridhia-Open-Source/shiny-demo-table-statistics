@@ -76,7 +76,7 @@ my_summ.POSIXct <- function(x) {
   out
 }
 
-my_summ.POSIXlt <- my_summ$POSIXct
+my_summ.POSIXlt <- my_summ.POSIXct
 
 my_summ.data.frame <- function(x) {
   lapply(x, my_summ)
