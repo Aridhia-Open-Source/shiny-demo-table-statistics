@@ -1,4 +1,3 @@
-
 script <- '$(document).ready(function() { 
 $("#myTable").tablesorter({headers: {3: {sorter: false}}});
 });'
@@ -25,21 +24,22 @@ Shiny.onInputChange('row' + id, vars['row' + id]);
 "
 
 server <- function(input, output, session) {
-  d <- reactive({
+  d <- reactive(withProgress(message = "Reading table", value = 0,{
     if(input$data == "") {
       NULL
     } else {
       xap.read_table(input$data)
     }
-  })
+  }))
   
-  output$dt <- renderDataTable(d())
+  output$dt <- withProgress(message = "Rendering table", {renderDataTable(d())})
   
   sessionVars <- reactiveValues(prev_data = "None")
   
-  summ <- reactive({
+  summ <- reactive(withProgress(message = "Calculating summary", value = 0,{
     my_summ(d())
-  })
+  }))
+  
   n <- reactive({
     print(names(d()))
     names(d())
@@ -50,19 +50,21 @@ server <- function(input, output, session) {
   
   ## plot creation
   observe({
-    dat <- d()
-    p_ids <- plot_ids()
-    if(is.null(dat)) {
-      return()
-    }
-    lapply(1:ncol(dat), function(i) {
-      p <- simple_plot(dat, dat[,i])
-      
-      p %>% set_options(width = 250, height = 150, resizable = FALSE) %>%
-        bind_shiny(p_ids[i])
-      
-      p %>% set_options(width = "auto", resizable = TRUE) %>% 
-        bind_shiny(paste0(p_ids[i], "modal"))
+    withProgress(message = "Creating plots", value = 0,{
+      dat <- d()
+      p_ids <- plot_ids()
+      if(is.null(dat)) {
+        return()
+      }
+      lapply(1:ncol(dat), function(i) {
+        p <- simple_plot(dat, dat[,i])
+        
+        p %>% set_options(width = 250, height = 150, resizable = FALSE) %>%
+          bind_shiny(p_ids[i])
+        
+        p %>% set_options(width = "auto", resizable = TRUE) %>% 
+          bind_shiny(paste0(p_ids[i], "modal"))
+      })
     })
   })
   
@@ -93,25 +95,29 @@ server <- function(input, output, session) {
   
   # create a ui chunk containing the table
   output$t <- renderUI({
-    print("Rendering Table...")
-    out <- create_table(summ(), n(), plot_ids())
-    print("Done")
-    out
+    withProgress(message = "Calculating table statistics", value = 0, {
+      print("Rendering Table...")
+      out <- create_table(summ(), n(), plot_ids())
+      print("Done")
+      out
+    })
   })
   
   # a ui chunk that outputs the created table and create a message handler that applys tablesorter
   output$ui <- renderUI({
-    print("Rendering Table UI...")
-    out <- list(
-      tags$head(tags$script(HTML('Shiny.addCustomMessageHandler("jsCode", function(message) { eval(message.value); });'))),
-      tags$head(tags$script(HTML('Shiny.addCustomMessageHandler("jsCode2", function(message) { eval(message.value); });'))),
-      uiOutput("t")
-    )
-    print("Done")
-    out
+    withProgress(message = "Render column table ", value = 0, {
+      print("Rendering Table UI...")
+      out <- list(
+        tags$head(tags$script(HTML('Shiny.addCustomMessageHandler("jsCode", function(message) { eval(message.value); });'))),
+        tags$head(tags$script(HTML('Shiny.addCustomMessageHandler("jsCode2", function(message) { eval(message.value); });'))),
+        uiOutput("t")
+      )
+      print("Done")
+      out
+    })
   })
   
-  output$plot_modals <- renderUI({
+  output$plot_modals <- withProgress(message = "Calculating plot", value = 0, {renderUI({
     nam <- n()
     if(is.null(nam)) {
       return(NULL)
@@ -121,7 +127,7 @@ server <- function(input, output, session) {
     lapply(1:length(nam), function(i) {
       create_plot_modal(nam[i], ids[i])
     })
-  })
+  })})
   
   output$modals <- renderUI({
     s <- summ()

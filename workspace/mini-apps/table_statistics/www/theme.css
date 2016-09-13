@@ -1,0 +1,16 @@
+body {
+  font-family: 'Oxygen','Lato','Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+table {
+  width: 100%;
+}
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100%;
+  max-width: 100%;
+}
+.modal-lg {
+  width: 100%;
+}
+.modal-lg .modal-content {
+  overflow: auto;
+}

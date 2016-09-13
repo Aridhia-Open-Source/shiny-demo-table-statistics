@@ -1,6 +1,5 @@
 
 
-
 dot_to_underscore <- function(string) {
   
   gsub("\\.", "_", string)
@@ -158,7 +157,7 @@ my_summ.POSIXct <- function(x) {
   out
 }
 
-my_summ.POSIXlt <- my_summ$POSIXct
+my_summ.POSIXlt <- my_summ.POSIXct
 
 my_summ.NULL <- function(x) {
   NULL
@@ -222,7 +221,8 @@ simple_plot.Date <- function(data, x) {
     add_axis("y", title = "", ticks = 8)
 }
 
-simple_plot.DateTime <- simple_plot.Date
+simple_plot.POSIXct <- simple_plot.Date
+simple_plot.POSIXlt <- simple_plot.Date
 
 
 
