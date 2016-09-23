@@ -24,13 +24,7 @@ Shiny.onInputChange('row' + id, vars['row' + id]);
 "
 
 server <- function(input, output, session) {
-  d <- reactive(withProgress(message = "Reading table", value = 0,{
-    if(input$data == "") {
-      NULL
-    } else {
-      xap.read_table(input$data)
-    }
-  }))
+  d <- callModule(xap.chooseDataTable, "choose_data")
   
   output$dt <- withProgress(message = "Rendering table", {renderDataTable(d())})
   
@@ -69,28 +63,15 @@ server <- function(input, output, session) {
   })
   
   ## we need to call tablesorter on the table each time it is created
-  ## needs an extra run-through on initialization
-  flushed <- 0
   session$onFlushed(function() {
-    isolate({
-      print(paste("Input", input$data))
-      print(paste("prev", sessionVars$prev_data))
-    })
-    flushed <<- flushed + 1
-    print("Flushing Reactives")
     isolate(
-      if(sessionVars$prev_data != input$data) {
+      if(!identical(sessionVars$prev_data, d())) {
         print("Table has changed. Applying tablesorter")
         session$sendCustomMessage(type='jsCode', list(value = script))
         session$sendCustomMessage(type='jsCode2', list(value = row_click_script))
-        sessionVars$prev_data <- input$data
+        sessionVars$prev_data <- d()
       }
     )
-    if(flushed < 3) {
-      print("Still Initializing")
-      session$sendCustomMessage(type='jsCode', list(value = script))
-      session$sendCustomMessage(type='jsCode2', list(value = row_click_script))
-    }
   }, FALSE)
   
   # create a ui chunk containing the table

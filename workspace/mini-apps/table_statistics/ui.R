@@ -4,8 +4,7 @@ xap.require("shiny",
 
 
 source("global.R")
-
-tables <- xap.list_tables()
+#source("modules.R")
 
 ui <- fluidPage(theme = "theme.css",
   includeScript("tablesorter.js"),
@@ -13,14 +12,14 @@ ui <- fluidPage(theme = "theme.css",
   
   fluidRow(
     column(6,
-      selectInput("data", NULL, choices = c("Choose a dataset" = "", tables))
+      xap.chooseDataTableUI("choose_data")
     ),
     column(6,
       actionButton("link", "View Data")
     )
   ),
                 
-  bsModal("modal", "Plot", "link", size = "large", dataTableOutput("dt")),
+  bsModal("modal", "Data", "link", size = "large", dataTableOutput("dt")),
                 
   uiOutput("ui"),
   uiOutput("modals"),
