@@ -24,13 +24,6 @@ Shiny.onInputChange('row' + id, vars['row' + id]);
 "
 
 server <- function(input, output, session) {
-  # d <- reactive(withProgress(message = "Reading table", value = 0,{
-  #   if(input$data == "") {
-  #     NULL
-  #   } else {
-  #     xap.read_table(input$data)
-  #   }
-  # }))
   
   choose_data <- callModule(xap.chooseDataTable, "choose_data")
   d <- choose_data$data
