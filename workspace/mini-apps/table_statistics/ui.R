@@ -13,7 +13,8 @@ ui <- fluidPage(theme = "theme.css",
                 
                 fluidRow(
                   column(6,
-                         selectInput("data", NULL, choices = c("Choose a dataset" = "", tables))
+                         # selectInput("data", NULL, choices = c("Choose a dataset" = "", tables))
+                         xap.chooseDataTableUI("choose_data")
                   ),
                   column(6,
                          actionButton("link", "View Data")

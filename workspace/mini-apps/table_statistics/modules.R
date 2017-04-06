@@ -10,17 +10,32 @@ xap.chooseDataTable <- function(input, output, session) {
     xap.read_table(table_name)
   }))
   
-  output$choose_table_ui <- renderUI({
-    ns <- session$ns
-    
-    selectizeInput(ns("table_name"), label = "Choose a Table", choices = c("Choose One" = "", tables))
+  observe({
+    i <- input$refresh
+    tables <- xap.list_tables()
+    isolate({
+      updateSelectizeInput(session, "table_name", choices = c("Choose One" = "", tables),
+                           selected = input$table_name)
+    })
   })
   
-  return(d)
+  # output$choose_table_ui <- renderUI({
+  #   ns <- session$ns
+  #   
+  #   selectizeInput(ns("table_name"), label = "Choose a Table", choices = c("Choose One" = "", tables))
+  # })
+  
+  return(list(data = d, table_name = reactive(input$table_name)))
 }
 
 xap.chooseDataTableUI <- function(id) {
   ns <- NS(id)
   
-  uiOutput(ns("choose_table_ui"))
+  tables <- xap.list_tables()
+  
+  tagList(
+    selectizeInput(ns("table_name"), label = "Choose a Table", choices = c("Choose One" = "", tables)),
+    actionButton(ns("refresh"), "Refresh")
+  )
+  #uiOutput(ns("choose_table_ui"))
 }

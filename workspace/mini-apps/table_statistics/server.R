@@ -24,13 +24,17 @@ Shiny.onInputChange('row' + id, vars['row' + id]);
 "
 
 server <- function(input, output, session) {
-  d <- reactive(withProgress(message = "Reading table", value = 0,{
-    if(input$data == "") {
-      NULL
-    } else {
-      xap.read_table(input$data)
-    }
-  }))
+  # d <- reactive(withProgress(message = "Reading table", value = 0,{
+  #   if(input$data == "") {
+  #     NULL
+  #   } else {
+  #     xap.read_table(input$data)
+  #   }
+  # }))
+  
+  choose_data <- callModule(xap.chooseDataTable, "choose_data")
+  d <- choose_data$data
+  table_name <- choose_data$table_name
   
   output$dt <- withProgress(message = "Rendering table", {renderDataTable(d())})
   
@@ -73,17 +77,17 @@ server <- function(input, output, session) {
   flushed <- 0
   session$onFlushed(function() {
     isolate({
-      print(paste("Input", input$data))
+      print(paste("Input", table_name()))
       print(paste("prev", sessionVars$prev_data))
     })
     flushed <<- flushed + 1
     print("Flushing Reactives")
     isolate(
-      if(sessionVars$prev_data != input$data) {
+      if(sessionVars$prev_data != table_name()) {
         print("Table has changed. Applying tablesorter")
         session$sendCustomMessage(type='jsCode', list(value = script))
         session$sendCustomMessage(type='jsCode2', list(value = row_click_script))
-        sessionVars$prev_data <- input$data
+        sessionVars$prev_data <- table_name()
       }
     )
     if(flushed < 3) {
