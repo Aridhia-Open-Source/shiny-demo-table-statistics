@@ -28,13 +28,13 @@ xap.chooseDataTable <- function(input, output, session) {
   return(list(data = d, table_name = reactive(input$table_name)))
 }
 
-xap.chooseDataTableUI <- function(id) {
+xap.chooseDataTableUI <- function(id, label = "Choose a Table") {
   ns <- NS(id)
   
   tables <- xap.list_tables()
   
   tagList(
-    selectizeInput(ns("table_name"), label = "Choose a Table", choices = c("Choose One" = "", tables)),
+    selectizeInput(ns("table_name"), label = label, choices = c("Choose One" = "", tables)),
     actionButton(ns("refresh"), "Refresh")
   )
   #uiOutput(ns("choose_table_ui"))
