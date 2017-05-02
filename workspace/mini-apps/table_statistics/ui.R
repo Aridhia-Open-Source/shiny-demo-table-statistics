@@ -1,7 +1,3 @@
-xap.require("shiny",
-            "ggvis",
-            "shinyBS")
-
 
 source("global.R")
 
