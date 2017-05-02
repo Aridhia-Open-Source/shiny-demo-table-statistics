@@ -8,7 +8,7 @@ if (!is.null(l)) {
   if(!l) {
     # attempt to install from packages sources included with the app
     pkg <- list.files("package_sources", pattern = "xapModules*")
-    .xap$install.packages(file.path("package_sources", pkg), repos = NULL)
+    utils::install.packages(file.path("package_sources", pkg), repos = NULL)
   }
 }
 
