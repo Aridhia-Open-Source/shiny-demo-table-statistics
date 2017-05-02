@@ -22,8 +22,6 @@ dot_to_underscore <- function(string) {
   
 }
 
-
-
 create_modal <- function(x, name) {
   
   UseMethod("create_modal", x)
@@ -285,7 +283,6 @@ create_row.Real <- function(x, name, plot_id) {
                   actionLink(paste0(dot_to_underscore(name), "more"), "More Stats")
           )
   )
-  
 }
 
 create_row.Integer <- create_row.Real
