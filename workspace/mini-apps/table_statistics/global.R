@@ -6,7 +6,7 @@ l <- xap.require.or.install("xapModules")
 if (!is.null(l)) {
   # if FALSE then package was not found in repo 
   if(!l) {
-    # attempt to install from packages sources included with the app
+    # attempt to install from packages binaries included with the app
     pkg <- list.files("package_binaries", pattern = "xapModules*")
     utils::install.packages(file.path("package_binaries", pkg), repos = NULL)
   }
