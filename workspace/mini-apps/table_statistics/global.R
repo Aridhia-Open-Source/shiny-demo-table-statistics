@@ -1,4 +1,3 @@
-source("xap_wrapper.r")
 
 dot_to_underscore <- function(string) {
   
