@@ -1,4 +1,17 @@
 
+
+# attempt to load xapModules
+l <- xap.require.or.install("xapModules")
+# if null then package was loaded from library
+if (!is.null(l)) {
+  # if FALSE then package was not found in repo 
+  if(!l) {
+    # attempt to install from packages sources included with the app
+    pkg <- list.files("package_sources", pattern = "xapModules*")
+    .xap$install.packages(file.path("package_sources", pkg), repos = NULL)
+  }
+}
+
 xap.require("shiny",
             "ggvis",
             "shinyBS")
