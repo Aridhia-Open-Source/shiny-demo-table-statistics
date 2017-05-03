@@ -259,6 +259,7 @@ create_row <- function(x, ...) {
 create_row.Real <- function(x, name, plot_id) {
   
   tags$tr(id = name,
+          title = "Click to Expand",
           tags$td(class = "left", p(tags$b(name))),
           tags$td(p(x$Type)),
           tags$td(p(x$Missing)),
@@ -289,6 +290,7 @@ create_row.Integer <- create_row.Real
 
 create_row.Polynominal <- function(x, name, plot_id) {
   tags$tr(id = name,
+          title = "Click to Expand",
           tags$td(class = "left", p(tags$b(name))),
           tags$td(p(x$Type)),
           tags$td(p(x$Missing)),
