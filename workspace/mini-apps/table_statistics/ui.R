@@ -8,6 +8,12 @@ ui <- fluidPage(
   theme = "theme.css",
   includeScript("tablesorter.js"),
   includeCSS("ts_styles.css"),
+  singleton(
+    tags$head(tags$script(src = "tablesorter.js"))
+  ),
+  singleton(
+    tags$head(tags$script(src = "row_click.js"))
+  ),
   
   fluidRow(column(
     6,
@@ -18,7 +24,7 @@ ui <- fluidPage(
   
   bsModal("modal", "Plot", "link", size = "large", dataTableOutput("dt")),
   
-  uiOutput("ui"),
+  uiOutput("t"),
   uiOutput("modals"),
   uiOutput("plot_modals")
 )
