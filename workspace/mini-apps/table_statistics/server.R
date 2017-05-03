@@ -27,7 +27,12 @@ server <- function(input, output, session) {
   
   ## plot creation
   observe({
-    withProgress(message = "Creating plots", value = 0,{
+    l <- length(n())
+    m <- "Creating plots"
+    if(l > 40) {
+      m <- paste(m, "-", l, "columns, this may take a while...")
+    }
+    withProgress(message = m, value = 0,{
       dat <- d()
       p_ids <- plot_ids()
       if(is.null(dat)) {
