@@ -1,6 +1,7 @@
 
 
 source("global.R")
+source("documentation_ui.R")
 
 tables <- xap.list_tables()
 
@@ -8,6 +9,10 @@ ui <- fluidPage(
   theme = "theme.css",
   includeScript("tablesorter.js"),
   includeCSS("ts_styles.css"),
+  tabsetPanel(documentation_tab(),
+              tabPanel("Application",
+    
+  
   singleton(
     tags$head(tags$script(src = "tablesorter.js"))
   ),
@@ -20,7 +25,7 @@ ui <- fluidPage(
     xap.chooseDataTableUI("choose_data", label = NULL)
   ),
   column(6,
-         actionButton("link", "View Data"))),
+         actionButton("link", "Preview Table"))),
   
   bsModal("modal", "Plot", "link", size = "large", dataTableOutput("dt")),
   
@@ -28,3 +33,4 @@ ui <- fluidPage(
   uiOutput("modals"),
   uiOutput("plot_modals")
 )
+))
