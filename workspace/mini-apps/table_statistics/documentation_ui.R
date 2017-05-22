@@ -2,35 +2,25 @@ documentation_tab <- function() {
   tabPanel("Information",
            # load MathJax library so LaTeX can be used for math equations
            withMathJax(), 
-           h3("Using the t-test to compare group means"), # paragraph and bold text
-           p("This app allows you to visually compare ."),
+           h3("Summarising Your Datasets"), # paragraph and bold text
+           p("This app allows you to view your workspace datasets and a selection of summary statistics
+             about each variable within."),
+           p("In addition, each variable can be displayed as a histogram, showing the distribution
+             of the data."),
            br(),
-           p("The layout of the app contains one", strong("sidebar,"), "and two", strong("tabs"), 
-             "the first of which (Information) you are reading, and the second (Application) containing the application output
-              with the regression plot and statistical results."),
-
+           h4("To use the app"),
+           p("The layout of the app contains two", strong("tabs,"), 
+             "the first of which (Information) you are reading, and the second (Application) containing the application output.
+              This shows a summary of each variable, its type, the number of missing values, and basic statistics."),
+           br(),
+           p("To use, first click on the Application tab, and then select your dataset of interest from the ", 
+             em("drop down box."), "To refresh the list of datasets available, click ", em("Refresh Table List."),
+             "To view a preview of the table you have selected, click ", em("Preview Table.")),
+            p("Additional statistics for each variable can be found by clicking on", em("details.")),
+           p("To view a histogram of your variable of interest, just click anywhere on the row containing the variable."),
            
-           # break used to space sections
-           br(),
-           h4("To use the app:"),
-           p("To experiment with linear regressions on your workspace datasets, in the ",
-             strong("sidebar"), 
-             " you may: "), 
-           br(), # ordered list
-           tags$ol(
-             tags$li("In the first ", em("drop down box, "), 
-                     "select the database to be used. The ", em("Refresh table list"), "button updates the tables you can select if 
-                      any workspace datasets are changed."), 
-             tags$li("In the second ", em("drop down box, "), 
-                     "pick the resulting variable of the regression."), 
-             tags$li("In the third ", em("drop down box, "), 
-                     "choose one of the regressors for the linear regression."), 
-             tags$li("In the following", em("drop down box "),
-                     "you are able to define which one, of the several predefined linear models, will be used."),
-             tags$li("Finally, in the ", em("check boxes "),
-                     "you can define characteristics of the resulting plot.")
             
-             ),
+            
            br(),
            p(strong("NB: This R Shiny app is provided unsupported and at user's risk. If you
                                are planning to use this app to inform your study, please review the
