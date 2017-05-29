@@ -22,6 +22,8 @@ documentation_tab <- function() {
             
             
            br(),
+           p("The video below gives an overview on how to use the app:"),
+           HTML('<iframe width="500" height="300" src="//www.youtube.com/embed/rCDZzf4ragg" frameborder="0" allowfullscreen></iframe>'),
            p(strong("NB: This R Shiny app is provided unsupported and at user's risk. If you
                                are planning to use this app to inform your study, please review the
                     code and ensure you are comfortable with the calculations made.")
