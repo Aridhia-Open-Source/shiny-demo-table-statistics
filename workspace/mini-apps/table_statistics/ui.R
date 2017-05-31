@@ -11,7 +11,7 @@ ui <- fluidPage(
   includeCSS("ts_styles.css"),
   tabsetPanel(documentation_tab(),
               tabPanel("Application",
-    
+  tags$div(class = "tab", style = "margin-top: 15px;"),
   
   singleton(
     tags$head(tags$script(src = "tablesorter.js"))
