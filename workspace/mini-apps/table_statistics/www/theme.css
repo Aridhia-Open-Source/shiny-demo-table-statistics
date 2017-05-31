@@ -1,3 +1,16 @@
+table {
+  width: 100%;
+}
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100%;
+  max-width: 100%;
+}
+.modal-lg {
+  width: 100%;
+}
+.modal-lg .modal-content {
+  overflow: auto;
+}
 @import '/assets/application-8b0cd7e75bb6e10c50ad7d51865ee367.css';
 body
 {position:relative;}
@@ -17,16 +30,3 @@ font-size: 25px;
 }
 h2 
 {font-size: 20px;}
-table {
-  width: 100%;
-}
-.shiny-input-container:not(.shiny-input-container-inline) {
-  width: 100%;
-  max-width: 100%;
-}
-.modal-lg {
-  width: 100%;
-}
-.modal-lg .modal-content {
-  overflow: auto;
-}
