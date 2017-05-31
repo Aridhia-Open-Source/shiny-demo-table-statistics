@@ -5,7 +5,7 @@ source("documentation_ui.R")
 
 tables <- xap.list_tables()
 
-ui <- fluidPage(
+ui <- fluidPage(column(12,
   theme = "theme.css",
   includeScript("tablesorter.js"),
   includeCSS("ts_styles.css"),
@@ -33,4 +33,4 @@ ui <- fluidPage(
   uiOutput("modals"),
   uiOutput("plot_modals")
 )
-))
+)))
