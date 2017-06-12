@@ -11,6 +11,7 @@ ui <- fluidPage(width = 12,
   includeCSS("ts_styles.css"),
   tabsetPanel( 
               tabPanel("Application",
+                       fluidPage(
   tags$div(class = "tab", style = "margin-top: 15px;"),
   
   singleton(
@@ -32,6 +33,6 @@ ui <- fluidPage(width = 12,
   uiOutput("t"),
   uiOutput("modals"),
   uiOutput("plot_modals")
-),
+)),
 documentation_tab()
 ))

@@ -1,11 +1,18 @@
-
-table {
-  width: 100%;
-}
+@import '/assets/application-8b0cd7e75bb6e10c50ad7d51865ee367.css';
 .shiny-input-container:not(.shiny-input-container-inline) {
   width: 100%;
   max-width: 100%;
+  
 }
+.tab-content{
+  margin: 25px 0 0 0;
+  min-height: 300px;
+}
+#t {margin: 15px -5px}
+table {
+  width: 100%;
+}
+
 .modal-lg {
   width: 100%;
 }
