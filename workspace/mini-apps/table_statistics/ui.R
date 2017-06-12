@@ -5,11 +5,11 @@ source("documentation_ui.R")
 
 tables <- xap.list_tables()
 
-ui <- fluidPage(column(12,
+ui <- fluidPage(
   theme = "theme.css",
   includeScript("tablesorter.js"),
   includeCSS("ts_styles.css"),
-  tabsetPanel(documentation_tab(),
+  tabsetPanel(column(12,
               tabPanel("Application",
   tags$div(class = "tab", style = "margin-top: 15px;"),
   
@@ -32,5 +32,6 @@ ui <- fluidPage(column(12,
   uiOutput("t"),
   uiOutput("modals"),
   uiOutput("plot_modals")
-)
+),
+documentation_tab()
 )))

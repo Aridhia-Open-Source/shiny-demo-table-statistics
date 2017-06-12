@@ -1,3 +1,4 @@
+@import '/assets/application-8b0cd7e75bb6e10c50ad7d51865ee367.css';
 table {
   width: 100%;
 }
@@ -9,9 +10,9 @@ table {
   width: 100%;
 }
 .modal-lg .modal-content {
-  overflow: auto;
+  overflow: hidden;
 }
-@import '/assets/application-8b0cd7e75bb6e10c50ad7d51865ee367.css';
+
 body
 {position:relative;}
 .well 
@@ -21,7 +22,7 @@ border-radius: 3px;
 box-shadow: none;
 }
 input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
-{height: 30px;!important}
+{height: 30px !important}
 h1 
 {
 text-align: center;

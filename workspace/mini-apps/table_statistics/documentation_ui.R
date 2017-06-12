@@ -1,33 +1,34 @@
 documentation_tab <- function() {
-  tabPanel("Information",
-           # load MathJax library so LaTeX can be used for math equations
-           withMathJax(), 
+  tabPanel("Help",
+            
            h3("Summarising Your Datasets"), # paragraph and bold text
-           p("This app allows you to view your workspace datasets and a selection of summary statistics
-             about each variable within."),
-           p("In addition, each variable can be displayed as a histogram, showing the distribution
-             of the data."),
+           p("This app allows you to view your workspace datasets and a selection of summary statistics about each variable within. 
+             Each variable can be displayed as a histogram, showing the distribution of the data."),
+           
+           br(),
+           h4("App Layout"),
+           p("The app contains two tabs; the first Application tab contains the application output. This shows a summary of each variable, 
+             its type, the number of missing values, and basic statistics. This second Help tab gives you an overview of the app itself."),
            br(),
            h4("To use the app"),
-           p("The layout of the app contains two", strong("tabs,"), 
-             "the first of which (Information) you are reading, and the second (Application) containing the application output.
-              This shows a summary of each variable, its type, the number of missing values, and basic statistics."),
+           p("To summarise your datasets first click on the Application tab, then:"),
+           tags$ul(
+             tags$li(strong("Select your dataset"), 
+                     "from the drop-down menu - to refresh the list of available datasets, click Refresh Table List, and preview your selection
+                     using Preview Table."), 
+             tags$li("Click on More Stats to ", strong("see additional statistics for each numeric variable"), " if required."), 
+                     
+             tags$li("Select Details to ", strong("see the category count for categoric variables. ")), 
+                     
+             tags$li("To", strong("view a histogram of your variable of interest,"), "just click anywhere on the row containing the variable,
+                     and use the View Plot link to ", strong("view a larger version"), "of the visualisation.")), 
            br(),
-           p("To use, first click on the Application tab, and then select your dataset of interest from the ", 
-             em("drop down box."), "To refresh the list of datasets available, click ", em("Refresh Table List."),
-             "To view a preview of the table you have selected, click ", em("Preview Table.")),
-            p("Additional statistics for each variable can be found by clicking on", em("details.")),
-           p("To view a histogram of your variable of interest, just click anywhere on the row containing the variable."),
-           
-            
-            
-           br(),
-           p("The video below gives an overview on how to use the app:"),
+           p("Watch the video below for an app walkthrough. "),
            HTML('<iframe width="100%" height="500" src="//www.youtube.com/embed/P5EO29aJXdk" frameborder="0"></iframe>'),
            br(),
-           p(strong("NB: This R Shiny app is provided unsupported and at user's risk. If you
-                               are planning to use this app to inform your study, please review the
-                    code and ensure you are comfortable with the calculations made.")
+           p(strong("NB: This mini-app is for provided for demonstration purposes, is unsupported and is utilised at user's risk. 
+                    If you plan to use this mini-app to inform your study, please review the code and ensure you are comfortable with 
+                    the calculations made before proceeding.")
            )
            
            )
