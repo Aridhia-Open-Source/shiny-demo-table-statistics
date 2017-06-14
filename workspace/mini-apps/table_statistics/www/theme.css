@@ -8,7 +8,7 @@
   margin: 25px 0 0 0;
   min-height: 300px;
 }
-#t {margin: 15px -5px}
+
 table {
   width: 100%;
 }
@@ -17,7 +17,7 @@ table {
   width: 100%;
 }
 .modal-lg .modal-content {
-  overflow: hidden;
+  overflow: auto;
 }
 
 body
@@ -46,6 +46,7 @@ h3, h4
 {
 font-size: 18px;
 margin-top: 15px;
+line-height: 40px;
 }
 h4
 {
@@ -55,4 +56,18 @@ ol
 {
 list-style-type: decimal;
 margin: 0 0 10px 25px;
+}
+.row ul li {
+    padding: 0 0 0 1em;
+    list-style-type: initial;
+    margin: 0 0 0 1em;
+}
+#t {margin:25px -5px}
+.modal {
+	top: 10%;
+	left: 0;
+	z-index: 1050;
+	width: auto;
+	margin-left: 0;
+	background-color: transparent;
 }
