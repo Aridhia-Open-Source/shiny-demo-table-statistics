@@ -1,5 +1,3 @@
-
-
 # attempt to load xapModules
 l <- xap.require.or.install("xapModules")
 # if null then package was loaded from library
@@ -327,7 +325,7 @@ create_row.Boolean <- create_row.Polynominal
 
 create_table <- function(summ, names, plot_ids) {
   print("Creating Table...")
-  out <- tags$table(id = "myTable", class = "tablesorter",
+  out <- tags$table(id = "myTable", class = "tablesorter table-striped",
                     create_header(),
                     tags$tbody(
                       lapply(seq_along(summ), function(i) {
