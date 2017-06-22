@@ -1,7 +1,6 @@
 
-
 server <- function(input, output, session) {
-
+  
   choose_data <- callModule(xap.chooseDataTable, "choose_data")
   d <- choose_data$data
   d_name <- choose_data$table_name

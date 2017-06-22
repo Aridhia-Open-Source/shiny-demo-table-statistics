@@ -265,7 +265,7 @@ create_row.Real <- function(x, name, plot_id) {
             conditionalPanel(
               condition = paste0("input[\"row", name,  "\"] === 1"),
               ggvisOutput(plot_id),
-              actionLink(paste0(dot_to_underscore(name), "plot"), "View Plot")
+              actionLink(paste0(dot_to_underscore(name), "plot"), "View plot")
             )
           ),
           tags$td(
@@ -279,7 +279,7 @@ create_row.Real <- function(x, name, plot_id) {
           tags$td(class = "right",
                   h6("Average"),
                   p(x$Average),
-                  actionLink(paste0(dot_to_underscore(name), "more"), "More Stats")
+                  actionLink(paste0(dot_to_underscore(name), "more"), "More stats")
           )
   )
 }
@@ -296,7 +296,7 @@ create_row.Polynominal <- function(x, name, plot_id) {
             conditionalPanel(
               condition = paste0("input[\"row", name,  "\"] === 1"),
               ggvisOutput(plot_id),
-              actionLink(paste0(dot_to_underscore(name), "plot"), "View Plot")
+              actionLink(paste0(dot_to_underscore(name), "plot"), "View plot")
             )
           ),
           tags$td(

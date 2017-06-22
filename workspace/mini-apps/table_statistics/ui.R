@@ -23,7 +23,7 @@ ui <- fluidPage(width = 12,
                                         6,
                                         h3("Select your dataset"),
                                         xap.chooseDataTableUI("choose_data", label = NULL),
-                                        actionButton("link", "Preview Table")
+                                        actionButton("link", "Preview table")
                                       ))),
                              
                              bsModal("modal", "Plot", "link", size = "large", dataTableOutput("dt")),

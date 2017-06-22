@@ -3,7 +3,7 @@ documentation_tab <- function() {
            fluidPage(width = 12,
                      fluidRow(column(
                        6,
-                       h3("Summarising Your Datasets"), # paragraph and bold text
+                       h3("Summarising your datasets"), # paragraph and bold text
                        p("This mini-app allows you to view your workspace datasets and a selection of summary statistics about each variable within. 
                          Each variable can be displayed as a histogram, showing the distribution of the data."),
                        
@@ -15,9 +15,9 @@ documentation_tab <- function() {
                        p("To summarise your datasets first click on the Application tab, then:"),
                        tags$ul(
                          tags$li(strong("Select your dataset"), 
-                                 "from the drop-down menu - to refresh the list of available datasets, click Refresh Table List, and preview your selection
-                                 using Preview Table."), 
-                         tags$li("Click on More Stats to ", strong("see additional statistics for each numeric variable"), " if required."), 
+                                 "from the drop-down menu - to refresh the list of available datasets, click Refresh table list, and preview your selection
+                                 using Preview table."), 
+                         tags$li("Click on More stats to ", strong("see additional statistics for each numeric variable"), " if required."), 
                          
                          tags$li("Select Details to ", strong("see the category count for categoric variables. ")), 
                          
@@ -27,11 +27,11 @@ documentation_tab <- function() {
                          ),
                        column(
                          6,
-                         h3("Walkthrough Video"),
+                         h3("Walkthrough video"),
                          
                          HTML('<iframe width="100%" height="300" src="//www.youtube.com/embed/P5EO29aJXdk?rel=0" frameborder="0"></iframe>'),
                          
-                         p("NB: This mini-app is for provided for demonstration purposes, is unsupported and is utilised at user's risk. 
+                         p(class = "nb", "NB: This mini-app is for provided for demonstration purposes, is unsupported and is utilised at user's risk. 
                            If you plan to use this mini-app to inform your study, please review the code and ensure you are comfortable with 
                            the calculations made before proceeding.")
                          
