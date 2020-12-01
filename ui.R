@@ -4,8 +4,8 @@ tables <- xap.list_tables()
 
 ui <- fluidPage(width = 12,
                 theme = "theme.css",
-                includeScript("tablesorter.js"),
-                includeCSS("ts_styles.css"),
+                includeScript("www/tablesorter.js"),
+                includeCSS("www/ts_styles.css"),
                 tabsetPanel( 
                   tabPanel("Application",
                            fluidPage(

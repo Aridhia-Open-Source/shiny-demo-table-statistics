@@ -1,0 +1,48 @@
+.header.headerSortUp { 
+  background-image: url(asc.gif); 
+  background-color: #3699B1; 
+}
+
+.header.headerSortDown { 
+  background-image: url(desc.gif); 
+  background-color: #3699B1; 
+} 
+
+.header { 
+  background-image: url(bg.gif); 
+  cursor: pointer; 
+  font-weight: bold; 
+  background-repeat: no-repeat; 
+  background-position: left center; 
+  padding-left: 20px; 
+  border-right: 1px solid #DBEAE2; 
+  margin-left: -1px; 
+}
+
+table {
+  border: 1px solid rgba(0,0,0,.1);
+  background-color: rgba(0,0,0,.05);
+  border-radius: 3px;
+}
+
+tbody tr:hover {
+  background-color: #e5e5e5;
+}
+
+tr {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+th, td {
+  vertical-align: top;
+  padding: 10px;
+}
+
+h6 {
+  color: #a4a4a4;
+    margin:0;
+}
+
+.tablesorter tbody tr {
+  cursor: pointer;
+}
