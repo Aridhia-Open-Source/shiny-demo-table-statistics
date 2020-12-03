@@ -4,6 +4,37 @@ library(ggvis)
 library(shinyBS)
 
 source("documentation_ui.R")
+source("config.R")
+
+xap.chooseDataTable <- function(input, output, session) {
+  d <- reactive(withProgress(message = "Reading table", value = 0, {
+    req(input$table_name)
+    xap.read_table(input$table_name)
+  }))
+  
+  ## Update the table list when refresh is clicked
+  observe({
+    i <- input$refresh
+    tables <- xap.list_tables()
+    ## isolate the update since we use input$table_name
+    isolate({
+      updateSelectizeInput(session, "table_name", choices = c("Choose a dataset" = "", tables),
+                           selected = input$table_name)
+    })
+  })
+  return(list(data = d, table_name = reactive(input$table_name)))
+}
+
+xap.chooseDataTableUI <- function(id, label = "Choose a table") {
+  ns <- NS(id)
+  
+  tables <- xap.list_tables()
+  
+  tagList(
+    selectizeInput(ns("table_name"), label = label, choices = c("Select a Table" = "", tables)),
+    actionButton(ns("refresh"), "Refresh table list")
+  )
+}
 
 dot_to_underscore <- function(string) {
   gsub("\\.", "_", string)
