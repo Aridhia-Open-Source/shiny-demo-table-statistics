@@ -1,5 +1,5 @@
 xap.list_tables <- function() {
-  list.files("data")
+  list.files("data", pattern = "\\.csv$")
 }
 
 xap.read_table <- function(table_name) {

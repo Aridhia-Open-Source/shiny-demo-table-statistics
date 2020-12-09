@@ -45,11 +45,12 @@ create_modal <- function(x, name) {
 }
 
 create_modal.Polynominal <- function(x, name) {
-  
-  bsModal(paste0(dot_to_underscore(name), "modal"), title = paste("Ordinal Values:", name),
-          trigger = paste0(dot_to_underscore(name), "details"),
-          dataTableOutput(paste0("dt", name))) 
-  
+  bsModal(
+    paste0(dot_to_underscore(name), "modal"),
+    title = paste("Ordinal Values:", name),
+    trigger = paste0(dot_to_underscore(name), "details"),
+    dataTableOutput(paste0("dt", name))
+  ) 
 }
 
 create_modal.Real <- function(x, name) {
@@ -67,14 +68,16 @@ create_modal.Real <- function(x, name) {
   
   xsd <- round(sd(v, na.rm = T), 3)
   
-  bsModal(paste0(nm, "modal"), title = paste("More Stats:", name),
-          trigger = paste0(nm, "more"),
-          tags$b("Min:"), xmin, tags$br(),
-          tags$b("Q25:"), q25, tags$br(),
-          tags$b("Median:"), xmed, tags$br(),
-          tags$b("Q75:"), q75, tags$br(),
-          tags$b("Max:"), xmax, tags$br(),
-          tags$b("Standard Deviation:"), xsd
+  bsModal(
+    paste0(nm, "modal"),
+    title = paste("More Stats:", name),
+    trigger = paste0(nm, "more"),
+    tags$b("Min:"), xmin, tags$br(),
+    tags$b("Q25:"), q25, tags$br(),
+    tags$b("Median:"), xmed, tags$br(),
+    tags$b("Q75:"), q75, tags$br(),
+    tags$b("Max:"), xmax, tags$br(),
+    tags$b("Standard Deviation:"), xsd
   )
 }
 
@@ -85,9 +88,7 @@ create_modal.Integer <- create_modal.Real
 create_modal.Boolean <- create_modal.Polynominal
 
 create_modal.default <- function(x, name) {
-  
   fluidRow()
-  
 }
 
 create_plot_modal <- function(name, plot_id) {
@@ -116,9 +117,8 @@ my_summ.numeric <- function(x) {
     xtype <- "Integer"
   }
   
-  
-  out <- list("Type" = xtype, "Missing" = xmissing, "Min" = xmin, "Max" = xmax, "Average" = xmean,
-              "Values" = x)
+  out <- list("Type" = xtype, "Missing" = xmissing, "Min" = xmin,
+              "Max" = xmax, "Average" = xmean, "Values" = x)
   class(out) <- xtype
   return(out)
 }
@@ -145,13 +145,14 @@ my_summ.character <- function(x) {
     string <- paste0(substr(xvalues_string, 1, to), " ...[", left, " more]")
   }
   
-  out <- list("Type" = "Polynominal",
-              "Missing" = xmissing, 
-              "Least" = paste0(names(xleast), " (", xleast, ")"), 
-              "Most" = paste0(names(xmost), " (", xmost, ")"), 
-              "Values" = string,
-              "dt" = data.frame("Nominal value" = names(xvalues), "Absolute count" = as.vector(xvalues),
-                                "Fraction" = as.vector(xvalues) / sum(xvalues))
+  out <- list(
+    "Type" = "Polynominal",
+    "Missing" = xmissing, 
+    "Least" = paste0(names(xleast), " (", xleast, ")"), 
+    "Most" = paste0(names(xmost), " (", xmost, ")"), 
+    "Values" = string,
+    "dt" = data.frame("Nominal value" = names(xvalues), "Absolute count" = as.vector(xvalues),
+                      "Fraction" = as.vector(xvalues) / sum(xvalues))
   )
   class(out) <- "Polynominal"
   return(out)
@@ -195,9 +196,7 @@ my_summ.NULL <- function(x) {
 
 
 simple_plot <- function(data, x) {
-  
   UseMethod("simple_plot", x)
-  
 }
 
 simple_plot.factor <- function(data, x) {
@@ -254,9 +253,6 @@ simple_plot.Date <- function(data, x) {
 simple_plot.POSIXct <- simple_plot.Date
 simple_plot.POSIXlt <- simple_plot.Date
 
-
-
-
 create_header <- function(x, ...) {
   tags$thead(
     tags$th("Name"),
@@ -266,39 +262,39 @@ create_header <- function(x, ...) {
   )
 }
 
-
 create_row <- function(x, ...) {
   UseMethod("create_row", x)
 }
 
 
 create_row.Real <- function(x, name, plot_id) {
-  
-  tags$tr(id = name,
-          title = "Click to Expand",
-          tags$td(class = "left", p(tags$b(name))),
-          tags$td(p(x$Type)),
-          tags$td(p(x$Missing)),
-          tags$td(
-            conditionalPanel(
-              condition = paste0("input[\"row", name,  "\"] === 1"),
-              ggvisOutput(plot_id),
-              actionLink(paste0(dot_to_underscore(name), "plot"), "View plot")
-            )
-          ),
-          tags$td(
-            h6("Min"),
-            p(x$Min)
-          ),
-          tags$td(
-            h6("Max"),
-            p(x$Max)
-          ),
-          tags$td(class = "right",
-                  h6("Average"),
-                  p(x$Average),
-                  actionLink(paste0(dot_to_underscore(name), "more"), "More stats")
-          )
+  tags$tr(
+    id = name,
+    title = "Click to Expand",
+    tags$td(class = "left", p(tags$b(name))),
+    tags$td(p(x$Type)),
+    tags$td(p(x$Missing)),
+    tags$td(
+      conditionalPanel(
+        condition = paste0("input[\"row", name,  "\"] === 1"),
+        ggvisOutput(plot_id),
+        actionLink(paste0(dot_to_underscore(name), "plot"), "View plot")
+      )
+    ),
+    tags$td(
+      h6("Min"),
+      p(x$Min)
+    ),
+    tags$td(
+      h6("Max"),
+      p(x$Max)
+    ),
+    tags$td(
+      class = "right",
+      h6("Average"),
+      p(x$Average),
+      actionLink(paste0(dot_to_underscore(name), "more"), "More stats")
+    )
   )
 }
 
@@ -306,61 +302,50 @@ create_row.Integer <- create_row.Real
 
 create_row.Polynominal <- function(x, name, plot_id) {
   tags$tr(id = name,
-          title = "Click to Expand",
-          tags$td(class = "left", p(tags$b(name))),
-          tags$td(p(x$Type)),
-          tags$td(p(x$Missing)),
-          tags$td(
-            conditionalPanel(
-              condition = paste0("input[\"row", name,  "\"] === 1"),
-              ggvisOutput(plot_id),
-              actionLink(paste0(dot_to_underscore(name), "plot"), "View plot")
-            )
-          ),
-          tags$td(
-            h6("Least"),
-            p(x$Least)
-          ),
-          tags$td(
-            h6("Most"),
-            p(x$Most)
-          ),
-          tags$td(class = "right",
-                  h6("Values"),
-                  p(x$Values),
-                  actionLink(paste0(dot_to_underscore(name), "details"), "Details")
-          )
+    title = "Click to Expand",
+    tags$td(class = "left", p(tags$b(name))),
+    tags$td(p(x$Type)),
+    tags$td(p(x$Missing)),
+    tags$td(
+      conditionalPanel(
+        condition = paste0("input[\"row", name,  "\"] === 1"),
+        ggvisOutput(plot_id),
+        actionLink(paste0(dot_to_underscore(name), "plot"), "View plot")
+      )
+    ),
+    tags$td(
+      h6("Least"),
+      p(x$Least)
+    ),
+    tags$td(
+      h6("Most"),
+      p(x$Most)
+    ),
+    tags$td(class = "right",
+      h6("Values"),
+      p(x$Values),
+      actionLink(paste0(dot_to_underscore(name), "details"), "Details")
+    )
   )
 }
 
-
 create_row.Date <- create_row.Polynominal
-
 create_row.DateTime <- create_row.Polynominal
-
 create_row.Boolean <- create_row.Polynominal
 
 
 create_table <- function(summ, names, plot_ids) {
   print("Creating Table...")
-  out <- tags$table(id = "myTable", class = "tablesorter table-striped",
-                    create_header(),
-                    tags$tbody(
-                      lapply(seq_along(summ), function(i) {
-                        create_row(summ[[i]], names[i], plot_ids[i])
-                      })
-                    )
+  out <- tags$table(
+    id = "myTable", class = "tablesorter table-striped",
+    create_header(),
+    tags$tbody(
+      lapply(seq_along(summ), function(i) {
+        create_row(summ[[i]], names[i], plot_ids[i])
+      })
+    )
   )
-  print("Done")
-  out
+  return(out)
 }
-
-
-
-
-
-
-
-
 
 
