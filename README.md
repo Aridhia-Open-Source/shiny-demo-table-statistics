@@ -1,15 +1,18 @@
 # Table Statistics
 
-This mini-app allows you to view your workspace datasets and a selection of summary statistics about each variable within. Each variable can be displayed as a histogram, showing the distribution of the data.
+This RShiny mini-app allows you to quickly visualize a dataset structure (columns, type, missing values...) and a selection of summary statistics. For each variable within the dataset, you can view statistics according to the type:
+
+- Polynominal Variables: Least and Most prevalent categories and all the unique values
+- Integers: Minimum and maximum values and the average
+
+Moreover, each variable can be displayed as a histogram, showing the distribution of the data.
 
 
 ## About the Table Statistics test app
 
-The mini-app contains two tabs:
+This mini-app is very easy to use, just select a dataset from the drop-down menu and scroll down to see all the variables within your dataset. To see the graph of a variable, click on the row; to see more statistics you can click on 'Details' or 'More stats'.
 
-1. The first tab contains the application output. This shows a summary of each variable, its type, the number of missing values, and basic       statistics. 
-2. This second Help tab gives you an overview of the mini-app itself and how to use it.
-
+The datasets appearing in the drop-down menu are located in the 'data' folder of this repository, you can add there you own datasets to use them in the app.
 
 ### Checkout and run
 
