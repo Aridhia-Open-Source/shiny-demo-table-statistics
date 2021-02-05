@@ -4,14 +4,10 @@ documentation_tab <- function() {
       fluidRow(
         column(6,
           h3("Summarising your datasets"),
-          p("This mini-app allows you to view your workspace datasets and a selection of summary
-             statistics about each variable within. Each variable can be displayed as a histogram,
+          p("This RShiny mini-app allows you to quickly visualize a dataset structure (columns, type, missing values...) and a selection of summary statistics. 
+          For each variable within the dataset, you can view statistics. Each variable can be displayed as a histogram,
              showing the distribution of the data."),
-          h4("Mini-app layout"),
-          p("The mini-app contains two tabs; the first Application tab contains the application output. 
-             This shows a summary of each variable, its type, the number of missing values, and basic
-             statistics. This second Help tab gives you an overview of the mini-app itself."),
-          h4("To use the mini-app"),
+          h4("How to use the mini-app"),
           p("To summarise your datasets first click on the Application tab, then:"),
           tags$ul(
             tags$li(
@@ -40,7 +36,6 @@ documentation_tab <- function() {
         ),
         column(6,
           h3("Walkthrough video"),
-          #HTML('<iframe width="100%" height="300" src="//www.youtube.com/embed/P5EO29aJXdk?rel=0" frameborder="0"></iframe>'),
           tags$video(src="Table Statistics Mini app.mp4", type = "video/mp4", width="100%", height = "350", frameborder = "0", controls = NA),
           p(class = "nb", 
             "NB: This mini-app is for provided for demonstration purposes, is unsupported and is utilised at user's risk. 
