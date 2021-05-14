@@ -32,3 +32,4 @@ Open the .Rproj file in RStudio and use `runApp()` to start the app.
 4. Run the `dependencies.R` script to install all the packages required by the app
 5. Run the app in your workspace
 
+For more information visit https://knowledgebase.aridhia.io/article/how-to-upload-your-mini-app/
