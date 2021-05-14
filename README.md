@@ -22,7 +22,7 @@ You can clone this repository by using the command:
 git clone https://github.com/aridhia/demo-table-statistics
 ```
 
-Open the .Rproj file in RStudio and use `runApp()` to start the app.
+Open the .Rproj file in RStudio, source the script `dependencies.R` to install all the packages required by the app, and run `runApp()` to start the app.
 
 ### Deploying to the workspace
 
