@@ -3,8 +3,8 @@ library(shiny)
 library(ggvis)
 library(shinyBS)
 
-source("documentation_ui.R")
-source("config.R")
+source("./code/documentation_ui.R")
+source("./code/config.R")
 
 xap.chooseDataTable <- function(input, output, session) {
   d <- reactive(withProgress(message = "Reading table", value = 0, {
