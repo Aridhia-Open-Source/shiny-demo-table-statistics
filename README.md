@@ -19,7 +19,7 @@ The datasets appearing in the drop-down menu are located in the 'data' folder of
 You can clone this repository by using the command:
 
 ```
-git clone https://github.com/aridhia/demo-table-statistics
+git clone https://github.com/Aridhia-Open-Source/shiny-demo-table-statistics
 ```
 
 Open the .Rproj file in RStudio, source the script `dependencies.R` to install all the packages required by the app, and run `runApp()` to start the app.
