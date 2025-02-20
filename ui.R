@@ -11,6 +11,11 @@ ui <- fluidPage(
   tabsetPanel( 
     tabPanel("Application",
       fluidPage(
+        tags$head(tags$style(HTML('
+          .ggvis-output.recalculating {
+            --shiny-fade-opacity: 1;
+          }
+        '))),
         singleton(
           tags$head(tags$script(src = "tablesorter.js"))
         ),
