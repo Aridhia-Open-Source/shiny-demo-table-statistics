@@ -51,10 +51,9 @@ create_modal.Polynominal <- function(x, name) {
   bsModal(
     paste0(dot_to_underscore(name), "modal"),
     title = paste("Ordinal Values:", name),
-    trigger = paste0(dot_to_underscore(name), "details"),
-    DTOutput(paste0("dt", name))
+    trigger = paste0(dot_to_underscore(name), "details")
+    #DTOutput(paste0("dt", name))
   ) 
-  print(DTOutput(paste0("dt", name)))
 }
 
 create_modal.Real <- function(x, name) {
@@ -328,8 +327,8 @@ create_row.Polynominal <- function(x, name, plot_id) {
     tags$td(class = "right",
       h6("Values"),
       p(x$Values),
-      DTOutput(paste0("dt", name)),
-      actionButton(paste0(dot_to_underscore(name), "details"), "Details")
+      print(DTOutput(paste0("dt", name)))
+      #actionButton(paste0(dot_to_underscore(name), "details"), "Details")
     )
   )
 }

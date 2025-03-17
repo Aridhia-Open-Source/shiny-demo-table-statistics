@@ -10,6 +10,6 @@ package_install <- function(x, ...) {
 
 # Source this script to install all the libraries needed for the app
 
-packages <- c("shiny", "ggvis", "shinyBS")
+packages <- c("shiny", "ggvis", "shinyBS","DT")
 
 package_install(packages)
