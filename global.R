@@ -2,6 +2,9 @@
 library(shiny)
 library(ggvis)
 library(shinyBS)
+library(DT)
+
+
 
 source("./code/documentation_ui.R")
 source("./code/config.R")
@@ -48,8 +51,8 @@ create_modal.Polynominal <- function(x, name) {
   bsModal(
     paste0(dot_to_underscore(name), "modal"),
     title = paste("Ordinal Values:", name),
-    trigger = paste0(dot_to_underscore(name), "details"),
-    dataTableOutput(paste0("dt", name))
+    trigger = paste0(dot_to_underscore(name), "details")
+    #DTOutput(paste0("dt", name))
   ) 
 }
 
@@ -324,7 +327,8 @@ create_row.Polynominal <- function(x, name, plot_id) {
     tags$td(class = "right",
       h6("Values"),
       p(x$Values),
-      actionLink(paste0(dot_to_underscore(name), "details"), "Details")
+      print(DTOutput(paste0("dt", name)))
+      #actionButton(paste0(dot_to_underscore(name), "details"), "Details")
     )
   )
 }
@@ -347,5 +351,3 @@ create_table <- function(summ, names, plot_ids) {
   )
   return(out)
 }
-
-
