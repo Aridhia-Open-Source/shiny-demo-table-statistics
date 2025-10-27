@@ -1,4 +1,3 @@
-
 server <- function(input, output, session) {
   
   choose_data <- callModule(xap.chooseDataTable, "choose_data")
@@ -91,6 +90,14 @@ server <- function(input, output, session) {
       output[[paste0("dt", nam[i])]] <- renderDataTable(s[[i]]$dt)
       create_modal(s[[i]], nam[i])
     })
+  })
+  
+  observeEvent(input$link, {
+    showModal(modalDialog(
+      DT::dataTableOutput("dt"),
+      size = "l",
+      easyClose = TRUE
+    ))
   })
 }
 
