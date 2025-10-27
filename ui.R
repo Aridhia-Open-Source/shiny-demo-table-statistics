@@ -1,5 +1,3 @@
-
-
 tables <- xap.list_tables()
 
 ui <- fluidPage(
@@ -31,7 +29,7 @@ ui <- fluidPage(
             )
           )
         ),
-        bsModal("modal", "Plot", "link", size = "large", dataTableOutput("dt")),
+        uiOutput("modal_ui"),
         uiOutput("t"),
         uiOutput("modals"),
         uiOutput("plot_modals")
