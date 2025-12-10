@@ -1,6 +1,6 @@
 # Table Statistics
 
-This RShiny mini-app allows you to quickly visualize a dataset structure (columns, type, missing values...) and a selection of summary statistics. For each variable within the dataset, you can view statistics according to the type:
+This R web app allows you to quickly visualize a dataset structure (columns, type, missing values...) and a selection of summary statistics. For each variable within the dataset, you can view statistics according to the type:
 
 - Polynominal Variables: Least and Most prevalent categories and all the unique values
 - Integers: Minimum and maximum values and the average
@@ -27,7 +27,7 @@ Open the .Rproj file in RStudio, source the script `dependencies.R` to install a
 ### Deploying to the workspace
 
 1. Download this GitHub repo as a .zip file.
-2. Create a new blank Shiny app in your workspace called "table-statistics".
+2. Create a new blank R web app in your workspace called "table-statistics".
 3. Navigate to the `table-statistics` folder under "files".
 4. Delete the `app.R` file from the `table-statistics` folder. Make sure you keep the `.version` file!
 5. Upload the .zip file to the `table-statistics` folder.
